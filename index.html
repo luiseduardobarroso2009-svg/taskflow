@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskFlow</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="app">
+
+        <header class="header">
+            <div>
+                <p class="small-title">ORGANIZE SEU DIA</p>
+                <h1>TaskFlow</h1>
+                <p class="subtitle">
+                    Organize suas tarefas e acompanhe seu progresso.
+                </p>
+            </div>
+
+            <button id="themeButton" class="theme-button">🌙</button>
+        </header>
+
+        <section class="dashboard">
+
+            <div class="stat-card">
+                <span>Total</span>
+                <strong id="totalTasks">0</strong>
+            </div>
+
+            <div class="stat-card">
+                <span>Concluídas</span>
+                <strong id="completedTasks">0</strong>
+            </div>
+
+            <div class="stat-card">
+                <span>Pendentes</span>
+                <strong id="pendingTasks">0</strong>
+            </div>
+
+        </section>
+
+        <section class="progress-section">
+
+            <div class="progress-header">
+                <span>Progresso</span>
+                <strong id="progressText">0%</strong>
+            </div>
+
+            <div class="progress-bar">
+                <div id="progressFill"></div>
+            </div>
+
+        </section>
+
+        <section class="task-input">
+
+            <input
+                type="text"
+                id="taskInput"
+                placeholder="Digite uma nova tarefa..."
+                maxlength="100"
+            >
+
+            <button id="addTaskButton">
+                + Adicionar
+            </button>
+
+        </section>
+
+        <section class="filters">
+
+            <button class="filter active" data-filter="all">
+                Todas
+            </button>
+
+            <button class="filter" data-filter="pending">
+                Pendentes
+            </button>
+
+            <button class="filter" data-filter="completed">
+                Concluídas
+            </button>
+
+        </section>
+
+        <main>
+
+            <div id="emptyState" class="empty-state">
+
+                <div class="empty-icon">✓</div>
+
+                <h2>Nenhuma tarefa por aqui</h2>
+
+                <p>
+                    Adicione sua primeira tarefa para começar.
+                </p>
+
+            </div>
+
+            <div id="taskList" class="task-list"></div>
+
+        </main>
+
+        <footer>
+            <p>TaskFlow • Projeto desenvolvido por Luis Eduardo</p>
+        </footer>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
