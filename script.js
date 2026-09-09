@@ -1,5 +1,6 @@
 const taskInput = document.getElementById("taskInput");
 const addTaskButton = document.getElementById("addTaskButton");
+
 const taskList = document.getElementById("taskList");
 const emptyState = document.getElementById("emptyState");
 
@@ -16,9 +17,19 @@ const filterButtons = document.querySelectorAll(".filter");
 let tasks = JSON.parse(localStorage.getItem("taskflowTasks")) || [];
 let currentFilter = "all";
 
+
+// =========================
+// SALVAR TAREFAS
+// =========================
+
 function saveTasks() {
     localStorage.setItem("taskflowTasks", JSON.stringify(tasks));
 }
+
+
+// =========================
+// ADICIONAR TAREFA
+// =========================
 
 function addTask() {
     const title = taskInput.value.trim();
@@ -28,23 +39,40 @@ function addTask() {
         return;
     }
 
-    tasks.push({
+    const newTask = {
         id: Date.now(),
         title: title,
         completed: false
-    });
+    };
+
+    tasks.push(newTask);
 
     saveTasks();
+
     taskInput.value = "";
+
     renderTasks();
+
     taskInput.focus();
 }
 
+
+// =========================
+// EXCLUIR TAREFA
+// =========================
+
 function deleteTask(id) {
     tasks = tasks.filter(task => task.id !== id);
+
     saveTasks();
+
     renderTasks();
 }
+
+
+// =========================
+// CONCLUIR / DESCONCLUIR
+// =========================
 
 function toggleTask(id) {
     tasks = tasks.map(task => {
@@ -59,17 +87,30 @@ function toggleTask(id) {
     });
 
     saveTasks();
+
     renderTasks();
 }
+
+
+// =========================
+// EDITAR TAREFA
+// =========================
 
 function editTask(id) {
     const task = tasks.find(task => task.id === id);
 
-    if (!task) return;
+    if (!task) {
+        return;
+    }
 
-    const newTitle = prompt("Edite sua tarefa:", task.title);
+    const newTitle = prompt(
+        "Edite sua tarefa:",
+        task.title
+    );
 
-    if (newTitle === null) return;
+    if (newTitle === null) {
+        return;
+    }
 
     const cleanTitle = newTitle.trim();
 
@@ -81,8 +122,14 @@ function editTask(id) {
     task.title = cleanTitle;
 
     saveTasks();
+
     renderTasks();
 }
+
+
+// =========================
+// FILTRAR TAREFAS
+// =========================
 
 function getFilteredTasks() {
     if (currentFilter === "pending") {
@@ -96,11 +143,23 @@ function getFilteredTasks() {
     return tasks;
 }
 
+
+// =========================
+// PROTEGER TEXTO HTML
+// =========================
+
 function escapeHTML(text) {
     const div = document.createElement("div");
+
     div.textContent = text;
+
     return div.innerHTML;
 }
+
+
+// =========================
+// MOSTRAR TAREFAS
+// =========================
 
 function renderTasks() {
     const filteredTasks = getFilteredTasks();
@@ -116,40 +175,70 @@ function renderTasks() {
     filteredTasks.forEach(task => {
         const taskElement = document.createElement("div");
 
-        taskElement.className = "task";
+        taskElement.classList.add("task");
 
         if (task.completed) {
             taskElement.classList.add("completed");
         }
 
         taskElement.innerHTML = `
-            <button class="check-button" aria-label="Concluir tarefa"></button>
+            <button
+                class="check-button"
+                type="button"
+                aria-label="Concluir tarefa"
+            ></button>
 
             <div class="task-content">
-                <p class="task-title">${escapeHTML(task.title)}</p>
+                <p class="task-title">
+                    ${escapeHTML(task.title)}
+                </p>
             </div>
 
             <div class="task-actions">
-                <button class="action-button edit-button" title="Editar">✏️</button>
-                <button class="action-button delete-button" title="Excluir">🗑️</button>
+
+                <button
+                    class="action-button edit-button"
+                    type="button"
+                    title="Editar tarefa"
+                >
+                    ✏️
+                </button>
+
+                <button
+                    class="action-button delete-button"
+                    type="button"
+                    title="Excluir tarefa"
+                >
+                    🗑️
+                </button>
+
             </div>
         `;
 
-        const checkButton = taskElement.querySelector(".check-button");
-        const editButton = taskElement.querySelector(".edit-button");
-        const deleteButton = taskElement.querySelector(".delete-button");
+        const checkButton =
+            taskElement.querySelector(".check-button");
+
+        const editButton =
+            taskElement.querySelector(".edit-button");
+
+        const deleteButton =
+            taskElement.querySelector(".delete-button");
+
 
         checkButton.addEventListener("click", () => {
             toggleTask(task.id);
         });
 
+
         editButton.addEventListener("click", () => {
             editTask(task.id);
         });
 
+
         deleteButton.addEventListener("click", () => {
             deleteTask(task.id);
         });
+
 
         taskList.appendChild(taskElement);
     });
@@ -157,26 +246,48 @@ function renderTasks() {
     updateStats();
 }
 
+
+// =========================
+// ATUALIZAR ESTATÍSTICAS
+// =========================
+
 function updateStats() {
     const total = tasks.length;
 
-    const completed = tasks.filter(task => task.completed).length;
+    const completed =
+        tasks.filter(task => task.completed).length;
 
-    const pending = total - completed;
+    const pending =
+        total - completed;
 
-    const progress = total === 0
-        ? 0
-        : Math.round((completed / total) * 100);
+    const progress =
+        total === 0
+            ? 0
+            : Math.round((completed / total) * 100);
+
 
     totalTasks.textContent = total;
+
     completedTasks.textContent = completed;
+
     pendingTasks.textContent = pending;
 
     progressText.textContent = `${progress}%`;
+
     progressFill.style.width = `${progress}%`;
 }
 
+
+// =========================
+// BOTÃO ADICIONAR
+// =========================
+
 addTaskButton.addEventListener("click", addTask);
+
+
+// =========================
+// ENTER PARA ADICIONAR
+// =========================
 
 taskInput.addEventListener("keydown", event => {
     if (event.key === "Enter") {
@@ -184,26 +295,41 @@ taskInput.addEventListener("keydown", event => {
     }
 });
 
+
+// =========================
+// FILTROS
+// =========================
+
 filterButtons.forEach(button => {
     button.addEventListener("click", () => {
+
         filterButtons.forEach(btn => {
             btn.classList.remove("active");
         });
 
         button.classList.add("active");
 
-        currentFilter = button.dataset.filter;
+        currentFilter =
+            button.dataset.filter;
 
         renderTasks();
     });
 });
 
+
+// =========================
+// TEMA CLARO / ESCURO
+// =========================
+
 themeButton.addEventListener("click", () => {
+
     document.body.classList.toggle("light");
 
-    const isLight = document.body.classList.contains("light");
+    const isLight =
+        document.body.classList.contains("light");
 
-    themeButton.textContent = isLight ? "☀️" : "🌙";
+    themeButton.textContent =
+        isLight ? "☀️" : "🌙";
 
     localStorage.setItem(
         "taskflowTheme",
@@ -211,11 +337,24 @@ themeButton.addEventListener("click", () => {
     );
 });
 
-const savedTheme = localStorage.getItem("taskflowTheme");
+
+// =========================
+// CARREGAR TEMA SALVO
+// =========================
+
+const savedTheme =
+    localStorage.getItem("taskflowTheme");
 
 if (savedTheme === "light") {
+
     document.body.classList.add("light");
+
     themeButton.textContent = "☀️";
 }
+
+
+// =========================
+// INICIAR PROJETO
+// =========================
 
 renderTasks();

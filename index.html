@@ -1,61 +1,151 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="TaskFlow - Gerenciador de tarefas moderno"
+    >
+
     <title>TaskFlow</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js"> </script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
 
     <div class="app">
 
+        <!-- =========================
+             CABEÇALHO
+        ========================== -->
         <header class="header">
-            <div>
-                <p class="small-title">ORGANIZE SEU DIA</p>
-                <h1>TaskFlow</h1>
+
+            <div class="header-content">
+
+                <p class="small-title">
+                    ORGANIZE SEU DIA
+                </p>
+
+                <h1>
+                    TaskFlow
+                </h1>
+
                 <p class="subtitle">
                     Organize suas tarefas e acompanhe seu progresso.
                 </p>
+
             </div>
 
-            <button id="themeButton" class="theme-button">🌙</button>
+            <button
+                id="themeButton"
+                class="theme-button"
+                type="button"
+                aria-label="Alternar entre tema claro e escuro"
+            >
+                🌙
+            </button>
+
         </header>
 
-        <section class="dashboard">
+
+        <!-- =========================
+             ESTATÍSTICAS
+        ========================== -->
+        <section
+            class="dashboard"
+            aria-label="Estatísticas das tarefas"
+        >
 
             <div class="stat-card">
-                <span>Total</span>
-                <strong id="totalTasks">0</strong>
+
+                <span>
+                    Total
+                </span>
+
+                <strong id="totalTasks">
+                    0
+                </strong>
+
             </div>
 
-            <div class="stat-card">
-                <span>Concluídas</span>
-                <strong id="completedTasks">0</strong>
-            </div>
 
             <div class="stat-card">
-                <span>Pendentes</span>
-                <strong id="pendingTasks">0</strong>
+
+                <span>
+                    Concluídas
+                </span>
+
+                <strong id="completedTasks">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <span>
+                    Pendentes
+                </span>
+
+                <strong id="pendingTasks">
+                    0
+                </strong>
+
             </div>
 
         </section>
 
-        <section class="progress-section">
+
+        <!-- =========================
+             PROGRESSO
+        ========================== -->
+        <section
+            class="progress-section"
+            aria-label="Progresso das tarefas"
+        >
 
             <div class="progress-header">
-                <span>Progresso</span>
-                <strong id="progressText">0%</strong>
+
+                <span>
+                    Progresso
+                </span>
+
+                <strong id="progressText">
+                    0%
+                </strong>
+
             </div>
 
-            <div class="progress-bar">
-                <div id="progressFill"></div>
+            <div
+                class="progress-bar"
+                role="progressbar"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                aria-valuenow="0"
+            >
+
+                <div
+                    id="progressFill"
+                ></div>
+
             </div>
 
         </section>
 
+
+        <!-- =========================
+             NOVA TAREFA
+        ========================== -->
         <section class="task-input">
 
             <input
@@ -63,37 +153,76 @@
                 id="taskInput"
                 placeholder="Digite uma nova tarefa..."
                 maxlength="100"
+                autocomplete="off"
+                aria-label="Nova tarefa"
             >
 
-            <button id="addTaskButton">
+            <button
+                id="addTaskButton"
+                type="button"
+            >
                 + Adicionar
             </button>
 
         </section>
 
-        <section class="filters">
 
-            <button class="filter active" data-filter="all">
+        <!-- =========================
+             FILTROS
+        ========================== -->
+        <section
+            class="filters"
+            aria-label="Filtros das tarefas"
+        >
+
+            <button
+                class="filter active"
+                data-filter="all"
+                type="button"
+            >
                 Todas
             </button>
 
-            <button class="filter" data-filter="pending">
+            <button
+                class="filter"
+                data-filter="pending"
+                type="button"
+            >
                 Pendentes
             </button>
 
-            <button class="filter" data-filter="completed">
+            <button
+                class="filter"
+                data-filter="completed"
+                type="button"
+            >
                 Concluídas
             </button>
 
         </section>
 
+
+        <!-- =========================
+             ÁREA PRINCIPAL
+        ========================== -->
         <main>
 
-            <div id="emptyState" class="empty-state">
+            <!-- Estado vazio -->
+            <div
+                id="emptyState"
+                class="empty-state"
+            >
 
-                <div class="empty-icon">✓</div>
+                <div
+                    class="empty-icon"
+                    aria-hidden="true"
+                >
+                    ✓
+                </div>
 
-                <h2>Nenhuma tarefa por aqui</h2>
+                <h2>
+                    Nenhuma tarefa por aqui
+                </h2>
 
                 <p>
                     Adicione sua primeira tarefa para começar.
@@ -101,15 +230,36 @@
 
             </div>
 
-            <div id="taskList" class="task-list"></div>
+
+            <!-- As tarefas serão adicionadas pelo JavaScript -->
+            <div
+                id="taskList"
+                class="task-list"
+            ></div>
 
         </main>
 
+
+        <!-- =========================
+             RODAPÉ
+        ========================== -->
         <footer>
-            <p>TaskFlow • Projeto desenvolvido por Luis Eduardo</p>
+
+            <p>
+                TaskFlow • Projeto desenvolvido por Luis Eduardo
+            </p>
+
         </footer>
 
     </div>
 
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script src="./script.js"></script>
+
 </body>
+
 </html>
