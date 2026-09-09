@@ -1,4 +1,6 @@
 const taskInput = document.getElementById("taskInput");
+const taskPriority = document.getElementById("taskPriority");
+const taskDueDate = document.getElementById("taskDueDate");
 const addTaskButton = document.getElementById("addTaskButton");
 
 const taskList = document.getElementById("taskList");

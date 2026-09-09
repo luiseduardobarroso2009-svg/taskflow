@@ -4,15 +4,9 @@
 <head>
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="description"
-        content="TaskFlow - Gerenciador de tarefas moderno"
-    >
+    <meta name="description" content="TaskFlow - Gerenciador de tarefas moderno">
 
     <title>TaskFlow</title>
 
@@ -45,12 +39,7 @@
 
             </div>
 
-            <button
-                id="themeButton"
-                class="theme-button"
-                type="button"
-                aria-label="Alternar entre tema claro e escuro"
-            >
+            <button id="themeButton" class="theme-button" type="button" aria-label="Alternar entre tema claro e escuro">
                 🌙
             </button>
 
@@ -60,10 +49,7 @@
         <!-- =========================
              ESTATÍSTICAS
         ========================== -->
-        <section
-            class="dashboard"
-            aria-label="Estatísticas das tarefas"
-        >
+        <section class="dashboard" aria-label="Estatísticas das tarefas">
 
             <div class="stat-card">
 
@@ -109,10 +95,7 @@
         <!-- =========================
              PROGRESSO
         ========================== -->
-        <section
-            class="progress-section"
-            aria-label="Progresso das tarefas"
-        >
+        <section class="progress-section" aria-label="Progresso das tarefas">
 
             <div class="progress-header">
 
@@ -126,76 +109,49 @@
 
             </div>
 
-            <div
-                class="progress-bar"
-                role="progressbar"
-                aria-valuemin="0"
-                aria-valuemax="100"
-                aria-valuenow="0"
-            >
+            <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
 
-                <div
-                    id="progressFill"
-                ></div>
+                <div id="progressFill"></div>
 
             </div>
 
         </section>
 
-
-        <!-- =========================
-             NOVA TAREFA
-        ========================== -->
         <section class="task-input">
 
-            <input
-                type="text"
-                id="taskInput"
-                placeholder="Digite uma nova tarefa..."
-                maxlength="100"
-                autocomplete="off"
-                aria-label="Nova tarefa"
-            >
+            <input type="text" id="taskInput" placeholder="Digite uma nova tarefa..." maxlength="100"
+                autocomplete="off">
 
-            <button
-                id="addTaskButton"
-                type="button"
-            >
+            <select id="taskPriority" aria-label="Prioridade da tarefa">
+                <option value="low">🟢 Baixa</option>
+                <option value="medium" selected>🟡 Média</option>
+                <option value="high">🔴 Alta</option>
+            </select>
+
+            <input type="date" id="taskDueDate" aria-label="Data de vencimento">
+
+            <button id="addTaskButton" type="button">
                 + Adicionar
             </button>
 
         </section>
 
 
+
         <!-- =========================
              FILTROS
         ========================== -->
-        <section
-            class="filters"
-            aria-label="Filtros das tarefas"
-        >
+        <section class="filters" aria-label="Filtros das tarefas">
 
-            <button
-                class="filter active"
-                data-filter="all"
-                type="button"
-            >
+            <button class="filter active" data-filter="all" type="button">
                 Todas
             </button>
 
-            <button
-                class="filter"
-                data-filter="pending"
-                type="button"
-            >
+            <button class="filter" data-filter="pending" type="button">
                 Pendentes
             </button>
 
-            <button
-                class="filter"
-                data-filter="completed"
-                type="button"
-            >
+            <button class="filter" data-filter="completed" type="button">
                 Concluídas
             </button>
 
@@ -208,15 +164,9 @@
         <main>
 
             <!-- Estado vazio -->
-            <div
-                id="emptyState"
-                class="empty-state"
-            >
+            <div id="emptyState" class="empty-state">
 
-                <div
-                    class="empty-icon"
-                    aria-hidden="true"
-                >
+                <div class="empty-icon" aria-hidden="true">
                     ✓
                 </div>
 
@@ -232,10 +182,7 @@
 
 
             <!-- As tarefas serão adicionadas pelo JavaScript -->
-            <div
-                id="taskList"
-                class="task-list"
-            ></div>
+            <div id="taskList" class="task-list"></div>
 
         </main>
 

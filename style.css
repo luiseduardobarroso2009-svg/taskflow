@@ -207,6 +207,41 @@ h1 {
     box-shadow: var(--shadow);
     transition: border 0.2s ease, transform 0.2s ease;
 }
+.task-input select {
+    height: 58px;
+    padding: 0 16px;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: var(--card);
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 600;
+    outline: none;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    transition: border 0.2s ease, transform 0.2s ease;
+}
+
+.task-input select:hover {
+    transform: translateY(-1px);
+}
+
+.task-input select:focus {
+    border-color: var(--primary-light);
+}
+
+.task-input select option {
+    background: var(--card);
+    color: var(--text);
+}
+.task-input input[type="date"] {
+    color: var(--text);
+    color-scheme: dark;
+}
+
+body.light .task-input input[type="date"] {
+    color-scheme: light;
+}
 
 .task-input input::placeholder {
     color: var(--text-secondary);
